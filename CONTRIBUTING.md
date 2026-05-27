@@ -5,8 +5,8 @@ signed the Oracle Contributor Agreement, see https://oca.opensource.oracle.com
 Only pull requests from committers that can be verified as having signed the OCA
 can be accepted.
 
-Submitting a contribution
--------------------------
+Submitting a Code Contribution
+------------------------------
 1. Make sure you have a user account at https://bugs.mysql.com. You'll need to reference
     this user account when you submit your OCA (Oracle Contributor Agreement).
 2. Sign the Oracle OCA. You can find instructions for doing that at the OCA Page,
@@ -17,8 +17,8 @@ Submitting a contribution
     record in https://bugs.mysql.com (using the 'contribution' tab).
  
 
-Non-code contributions
------------------------
+Non-Code Contributions
+----------------------
 Submissions Other than Code.  These terms apply to all of Your Submissions other than code contributions. 
 "You" means you personally, as well as any person or entity on whose behalf you are Using the Site. "You" 
 does not include Oracle or its employees using the Site on Oracle's behalf.  "Use" and its variants are to 
