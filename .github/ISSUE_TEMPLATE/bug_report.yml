@@ -1,0 +1,205 @@
+name: Bug report
+description: Report a reproducible problem with MySQL.
+title: "[Bug]: "
+labels:
+  - bug
+  - triage-needed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a MySQL bug.
+
+        Please provide enough detail for the team to reproduce, diagnose, and route the issue.
+        Do not include passwords, private keys, customer data, or other sensitive information.
+
+        If this is a security vulnerability, do not file a public issue. Please follow Oracle's vulnerability reporting process instead.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Pre-flight checklist
+      description: Please confirm the following before submitting.
+      options:
+        - label: I have searched existing GitHub issues and MySQL Bug database - https://bugs.mysql.com/ -  and did not find a duplicate.
+          required: true
+        - label: I have removed or redacted sensitive information.
+          required: true
+        - label: I can reproduce this issue or provide enough information for the team to investigate.
+          required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: MySQL component
+      description: Which area appears to be affected?
+      multiple: true
+      options:
+        - Server
+        - InnoDB
+        - Optimizer
+        - Parser / SQL syntax
+        - Replication
+        - Group Replication / InnoDB Cluster
+        - Clone / Backup
+        - Authentication / Security
+        - C API / libmysqlclient
+        - Connector/C++
+        - Connector/J
+        - Connector/NET
+        - Connector/Node.js
+        - Connector/Python
+        - MySQL Shell
+        - MySQL Router
+        - MySQL Operator
+        - MySQL Workbench
+        - Documentation
+        - Build / Packaging
+        - Tests / CI
+        - Other / Unknown
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: MySQL version
+      description: Include the exact version, commit SHA, package version, or build source.
+      placeholder: "Example: 8.4.2, 9.0.1, or commit abc1234"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install_method
+    attributes:
+      label: Installation or build method
+      options:
+        - Oracle-provided package
+        - MySQL Community package
+        - Source build
+        - Docker / container image
+        - Kubernetes / Operator
+        - Homebrew
+        - Linux distribution package
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: platform
+    attributes:
+      label: Operating system and platform
+      placeholder: "Example: Oracle Linux 9 x86_64, Ubuntu 24.04 ARM64, macOS 15, Windows Server 2022"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Bug summary
+      description: What happened?
+      placeholder: "A clear and concise description of the problem."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect MySQL to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened? Include error messages where possible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reproducible case you can.
+      value: |
+        1.
+        2.
+        3.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: testcase
+    attributes:
+      label: Minimal SQL test case
+      description: If applicable, include schema, data, statements, and expected output.
+      placeholder: |
+        CREATE TABLE ...
+        INSERT INTO ...
+        SELECT ...
+      render: sql
+
+  - type: textarea
+    id: config
+    attributes:
+      label: Relevant configuration
+      description: Include relevant my.cnf/my.ini settings, startup options, replication topology, or cluster configuration.
+      render: ini
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error log, stack trace, or diagnostic output
+      description: Paste relevant logs. Please redact sensitive data.
+      render: shell
+
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Is this a regression?
+      description: Did this work in an earlier version?
+      options:
+        - "Yes"
+        - "No"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: last_known_good
+    attributes:
+      label: Last known good version
+      description: Required only if this is a regression.
+      placeholder: "Example: 8.0.36"
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Impact
+      description: How severely does this affect you?
+      options:
+        - Blocks development or production use
+        - Causes data loss or corruption
+        - Causes crash or server restart
+        - Causes incorrect results
+        - Causes performance degradation
+        - Causes usability issue
+        - Documentation issue
+        - Minor issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Workaround
+      description: Is there a workaround? If so, please describe it.
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add any other context, links, screenshots, or related issues.
