@@ -39,13 +39,6 @@ body:
 
         Capture enough context for reviewers to understand ownership, contact details, status, and intended target release.
 
-  - type: input
-    id: proposal_title
-    attributes:
-      label: Proposal title
-      placeholder: "Example: Add support for ..."
-    validations:
-      required: true
 
   - type: dropdown
     id: status
