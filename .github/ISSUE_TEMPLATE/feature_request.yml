@@ -39,19 +39,6 @@ body:
 
         Capture enough context for reviewers to understand ownership, contact details, status, and intended target release.
 
-
-  - type: dropdown
-    id: status
-    attributes:
-      label: Status
-      options:
-        - Draft
-        - Under Review
-        - Accepted
-        - Implemented
-    validations:
-      required: true
-
   - type: input
     id: primary_contact_name
     attributes:
