@@ -131,11 +131,12 @@ body:
   - type: textarea
     id: related_references
     attributes:
-      label: Related Issues / PRs / Worklogs / References (Optional)
-      description: Include links to any related GitHub issues, worklogs, discussions, standards, or documentation.
+      label: Related Issues / Pull Requests / References (Optional)
+      description: Include links to any related GitHub issues, pull requests, discussions, standards, or documentation.
       placeholder: |
         - Related Issue:
-        - Worklog:
+        - Related Pull Request:
+        - Discussion:
         - Documentation:
     validations:
       required: false
@@ -215,7 +216,7 @@ body:
     id: non_functional_requirements
     attributes:
       label: Non-functional Requirements
-      description: Performance, compatibility, security, observability, usability, maintainability, etc.
+      description: Describe performance, compatibility, security, observability, usability, maintainability, or other quality attributes.
 
   - type: markdown
     attributes:
@@ -249,36 +250,43 @@ body:
     id: approach_summary
     attributes:
       label: Summary of the Approach
+      description: Describe the proposed design at a high level.
 
   - type: textarea
     id: user_interface
     attributes:
       label: User Interface
+      description: Describe the user-facing behavior, SQL, API, CLI, configuration, or operational workflow.
 
   - type: textarea
     id: configuration_knobs
     attributes:
       label: Configuration / Knobs
+      description: Describe any new or changed configuration options, system variables, command-line options, SQL syntax, or extension points.
 
   - type: textarea
     id: observability
     attributes:
       label: Observability
+      description: Describe logs, metrics, Performance Schema instrumentation, diagnostics, or tracing.
 
   - type: textarea
     id: user_procedure
     attributes:
       label: User Procedure
+      description: Describe how a user, DBA, operator, or developer would use the feature.
 
   - type: textarea
     id: security_context
     attributes:
       label: Security Considerations
+      description: Describe privilege checks, authentication, authorization, data exposure, or other security-sensitive behavior.
 
   - type: textarea
     id: compatibility_behavior_change
     attributes:
       label: Compatibility and Behavior Changes
+      description: Describe compatibility, upgrade, downgrade, replication, deprecation, or behavior changes.
 
   - type: markdown
     attributes:
@@ -290,16 +298,23 @@ body:
     attributes:
       label: Block Diagram
       description: Include a Mermaid diagram, ASCII diagram, or link if helpful.
+      placeholder: |
+        ```mermaid
+        flowchart TD
+          A --> B
+        ```
 
   - type: textarea
     id: interface_specification
     attributes:
       label: Interface Specification
+      description: Describe internal APIs, public APIs, protocol changes, data structures, file formats, or integration points.
 
   - type: textarea
     id: implementation_steps
     attributes:
       label: Proposed Implementation Plan
+      description: Outline the expected implementation plan or major work items.
       placeholder: |
         1.
         2.
@@ -314,4 +329,9 @@ body:
     id: qa_notes
     attributes:
       label: QA Notes
-      description: Edge cases, testing strategy, regression risks, automation opportunities, etc.
+      description: Describe edge cases, regression risks, test scenarios, automation opportunities, compatibility testing, or validation concerns.
+      placeholder: |
+        - Edge cases:
+        - Regression risks:
+        - Suggested test coverage:
+        - Automation opportunities:
