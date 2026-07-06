@@ -166,7 +166,7 @@ body:
       placeholder: |
         - As a ..., I want ..., so that ...
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: in_scope
@@ -176,7 +176,7 @@ body:
       placeholder: |
         - ...
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: out_of_scope
@@ -186,7 +186,7 @@ body:
       placeholder: |
         - ...
     validations:
-      required: true
+      required: false
 
   - type: textarea
     id: high_level_references
@@ -194,7 +194,7 @@ body:
       label: References
       description: Background material, standards, prior work, or related implementations.
     validations:
-      required: true
+      required: false
 
   - type: markdown
     attributes:
