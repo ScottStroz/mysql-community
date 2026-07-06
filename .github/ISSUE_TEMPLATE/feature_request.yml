@@ -1,0 +1,128 @@
+name: New Feature Request
+description: Request a new feature or enhancement for MySQL.
+title: "[Feature]: "
+labels:
+  - enhancement
+  - feature-request
+  - triage-needed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve MySQL.
+
+        **Use this form if you are requesting a new feature or enhancement.**
+
+        If you intend to design and implement the feature yourself (or with other contributors), please use the **New Feature Proposal** form instead. That form is intended for contributor-led feature development and includes design and implementation details.
+
+        Feature requests do not require implementation details. We are primarily interested in understanding the problem you are trying to solve and why the feature would be valuable.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before You Submit
+      options:
+        - label: I searched existing GitHub issues and did not find an existing feature request for this enhancement.
+          required: true
+        - label: I have removed or redacted any sensitive information.
+          required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which MySQL component would this feature primarily affect?
+      options:
+        - Server
+        - InnoDB
+        - Optimizer
+        - Parser
+        - Replication
+        - Group Replication
+        - X Plugin
+        - Router
+        - Shell
+        - Documentation
+        - Build System
+        - Installer
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: Provide a short summary of the requested feature.
+      placeholder: Add support for...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem are you trying to solve?
+      placeholder: |
+        Describe the challenge or limitation you are experiencing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Requested Feature
+      description: Describe the feature or enhancement you would like to see.
+      placeholder: |
+        Explain what you would like MySQL to do.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases (Optional)
+      description: If applicable, describe how you would use this feature and who would benefit.
+      placeholder: |
+        - As a DBA...
+        - As an application developer...
+        - As a database administrator...
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Current Workarounds
+      description: Describe any workarounds you currently use, if applicable.
+      placeholder: |
+        If no workaround exists, enter "None."
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Include any additional information, examples, screenshots, links, standards, or references that may help explain the request.
+      placeholder: |
+        - Related issue:
+        - Documentation:
+        - Example SQL:
+        - External reference:
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Potential Impact Areas (Optional)
+      description: Select any areas you think this feature may affect.
+      options:
+        - label: SQL syntax or statements
+        - label: Performance
+        - label: Security
+        - label: Replication
+        - label: Observability
+        - label: Administration
+        - label: Compatibility
+        - label: Developer APIs
+        - label: Documentation
+        - label: Other
