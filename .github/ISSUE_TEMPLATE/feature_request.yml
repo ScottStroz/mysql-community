@@ -1,33 +1,39 @@
-name: Feature request / design proposal
-description: Suggest a MySQL feature, enhancement, or design proposal.
-title: "[Feature]: "
+name: New Feature Proposal
+description: Propose a new MySQL feature that you intend to design and contribute.
+title: "[Proposal]: "
 labels:
   - enhancement
   - triage-needed
   - design-proposal
+
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for proposing an improvement to MySQL.
+        Thank you for proposing a new feature for MySQL.
 
-        This form follows the MySQL Community Design Proposal structure:
-        - Document metadata
+        **This form is intended for contributors who plan to design and implement a new feature.**
+
+        If you simply want to request a new capability or enhancement without proposing a design or implementation, please use the **Feature Request** form instead.
+
+        This proposal follows the MySQL Community Design Proposal process:
+
+        - Document Metadata
         - 1. High-Level Description
-        - 2. Requirements
-        - 3. Impact Checklist
-        - 4. High-Level Specification
-        - 5. Low-Level Design
-        - 6. QA Notes
+        - 2. Requirements (Optional)
+        - 3. Impact Checklist (Optional)
+        - 4. High-Level Specification (Optional)
+        - 5. Low-Level Design (Optional)
+        - 6. QA Notes (Optional)
 
-        Sections 3 and below are optional. Fill them in when they help reviewers understand the proposal.
+        Only the High-Level Description section is expected for an initial proposal. Additional sections may be completed as the proposal evolves through review.
 
   - type: checkboxes
     id: preflight
     attributes:
-      label: Pre-flight checklist
+      label: Pre-flight Checklist
       options:
-        - label: I have searched existing GitHub issues and did not find a duplicate request.
+        - label: I have searched existing GitHub issues and did not find a duplicate proposal.
           required: true
         - label: I have removed or redacted sensitive information.
           required: true
@@ -35,71 +41,84 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Document metadata
+        ## Document Metadata
 
-        Capture enough context for reviewers to understand ownership, contact details, status, and intended target release.
+        Provide enough information so reviewers understand who is proposing the feature and which area of MySQL it affects.
 
   - type: input
     id: primary_contact_name
     attributes:
-      label: Primary contact name
-      placeholder: "Full name"
+      label: Primary Contact Name
+      placeholder: Full name
     validations:
       required: true
 
   - type: input
     id: primary_contact_email
     attributes:
-      label: Primary contact email
-      placeholder: "name@example.com"
+      label: Primary Contact Email
+      placeholder: name@example.com
     validations:
       required: true
 
   - type: input
     id: company_organization
     attributes:
-      label: Company / organization
-      placeholder: "Example: Oracle, Independent contributor, Partner name"
+      label: Company / Organization
+      placeholder: Oracle, Independent Contributor, Partner, etc.
     validations:
       required: true
 
   - type: input
-    id: role_team
+    id: role
     attributes:
-      label: Role / team
-      placeholder: "Example: MySQL Server, MySQL Shell, Contributor, DBA, Application Developer"
+      label: Role
+      placeholder: Software Engineer, DBA, Student, Contributor, etc.
     validations:
       required: true
 
   - type: textarea
     id: additional_authors
     attributes:
-      label: Additional authors / contributors
-      description: List any additional people who contributed to the proposal.
+      label: Additional Authors / Contributors
+      description: List anyone else contributing to this proposal.
       placeholder: |
         - Name <email@example.com>
-        - Name <email@example.com>
 
-  - type: input
-    id: proposal_date
+  - type: dropdown
+    id: component
     attributes:
-      label: Date
-      placeholder: "YYYY-MM-DD"
+      label: Component
+      description: Which MySQL component is primarily affected?
+      options:
+        - Server
+        - InnoDB
+        - Optimizer
+        - Parser
+        - Replication
+        - Group Replication
+        - X Plugin
+        - Router
+        - Shell
+        - Build System
+        - Documentation
+        - Other
     validations:
       required: true
 
   - type: input
     id: target_release
     attributes:
-      label: Target release
-      placeholder: "Example: 9.x, future release, not yet known"
+      label: Target Release (Optional)
+      description: If you have a target release in mind.
+      placeholder: "Example: 9.x, Future Release"
     validations:
-      required: true
+      required: false
 
   - type: dropdown
     id: roadmap_section
     attributes:
-      label: Roadmap section
+      label: Roadmap Section
       options:
         - AI & Cloud
         - Developer/DBA Experience
@@ -112,39 +131,38 @@ body:
   - type: textarea
     id: related_references
     attributes:
-      label: Related issues / PRs / bugs / references
-      description: Link to related GitHub issues, pull requests, bugs, worklogs, discussions, standards, or documentation.
+      label: Related Issues / PRs / Worklogs / References (Optional)
+      description: Include links to any related GitHub issues, worklogs, discussions, standards, or documentation.
       placeholder: |
-        - Related issue:
-        - Related PR:
-        - Related bug:
-        - Related documentation:
+        - Related Issue:
+        - Worklog:
+        - Documentation:
     validations:
-      required: true
+      required: false
 
   - type: markdown
     attributes:
       value: |
         ## 1. High-Level Description
 
-        Keep this section approachable. A reviewer should understand the problem, motivation, and intended scope before reading implementation details.
+        Describe the problem, motivation, and proposed solution at a high level.
+        Reviewers should be able to understand the purpose and scope without implementation details.
 
   - type: textarea
     id: executive_summary
     attributes:
-      label: Executive summary
-      description: Summarize the proposal in a few paragraphs.
-      placeholder: "Describe the problem, motivation, and proposed change."
+      label: Executive Summary
+      description: Describe the problem, motivation, and proposed solution.
+      placeholder: Explain the feature and why it should exist.
     validations:
       required: true
 
   - type: textarea
     id: user_developer_stories
     attributes:
-      label: User / developer stories
-      description: Describe who needs this and what they are trying to accomplish.
+      label: User / Developer Stories
+      description: Describe who benefits from this feature.
       placeholder: |
-        - As a ..., I want ..., so that ...
         - As a ..., I want ..., so that ...
     validations:
       required: true
@@ -152,10 +170,9 @@ body:
   - type: textarea
     id: in_scope
     attributes:
-      label: In scope
-      description: What is included in this proposal?
+      label: Proposed Scope
+      description: Describe what this proposal intends to implement.
       placeholder: |
-        - ...
         - ...
     validations:
       required: true
@@ -163,10 +180,9 @@ body:
   - type: textarea
     id: out_of_scope
     attributes:
-      label: Out of scope / limitations
-      description: What is intentionally excluded, deferred, or limited?
+      label: Out of Scope / Future Work
+      description: Describe what is intentionally excluded from this proposal.
       placeholder: |
-        - ...
         - ...
     validations:
       required: true
@@ -175,57 +191,41 @@ body:
     id: high_level_references
     attributes:
       label: References
-      description: Include background material, standards, prior work, documentation, discussions, or related implementations.
-      placeholder: |
-        - ...
-        - ...
+      description: Background material, standards, prior work, or related implementations.
     validations:
       required: true
 
   - type: markdown
     attributes:
       value: |
-        ## 2. Requirements
+        ## 2. Requirements (Optional)
 
-        Use direct, normative language where appropriate. These requirements should satisfy the motivating stories above.
+        If the expected behavior is already well understood, you may leave this section blank and refine it during design review.
 
   - type: textarea
     id: functional_requirements
     attributes:
-      label: Functional requirements
-      description: List the required behavior. Use direct language such as MUST, SHOULD, MAY, or MUST NOT where useful.
+      label: Functional Requirements
+      description: Describe the expected behavior using MUST, SHOULD, MAY, or MUST NOT where appropriate.
       placeholder: |
         - The implementation MUST ...
         - The implementation SHOULD ...
-        - The implementation MUST NOT ...
-    validations:
-      required: true
 
   - type: textarea
     id: non_functional_requirements
     attributes:
-      label: Non-functional requirements
-      description: Capture requirements for performance, observability, compatibility, security, usability, operability, or maintainability. Enter "N/A" if none are known.
-      placeholder: |
-        - Performance:
-        - Compatibility:
-        - Observability:
-        - Security:
-        - Operability:
-    validations:
-      required: true
+      label: Non-functional Requirements
+      description: Performance, compatibility, security, observability, usability, maintainability, etc.
 
   - type: markdown
     attributes:
       value: |
-        ## 3. Impact Checklist
-
-        Optional. Use this as a fast reviewer summary. Every checked item should be explained later in the proposal when possible.
+        ## 3. Impact Checklist (Optional)
 
   - type: checkboxes
     id: impact_checklist
     attributes:
-      label: Impact areas
+      label: Impact Areas
       options:
         - label: SQL syntax or statements
         - label: Configuration options or system variables
@@ -243,91 +243,63 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 4. High-Level Specification
-
-        Optional. Explain the design in enough detail for reviewers to evaluate correctness, usability, observability, compatibility, and risk.
+        ## 4. High-Level Specification (Optional)
 
   - type: textarea
     id: approach_summary
     attributes:
-      label: Summary of the approach
-      description: Describe the proposed design at a high level.
+      label: Summary of the Approach
 
   - type: textarea
     id: user_interface
     attributes:
       label: User Interface
-      description: Describe the user-facing behavior, SQL, API, CLI, configuration, or operational workflow.
 
   - type: textarea
     id: configuration_knobs
     attributes:
       label: Configuration / Knobs
-      description: Describe new or changed configuration clauses, options, variables, defaults, valid values, and expected behavior.
-      placeholder: |
-        New configuration clauses or options:
-
-        New system variables or command-line options:
-
-        New command-line options for utilities:
-
-        New UDFs or similar extension points:
-
-        New statements or grammar changes:
 
   - type: textarea
     id: observability
     attributes:
       label: Observability
-      description: Describe logs, metrics, Performance Schema exposure, status variables, instrumentation, diagnostics, or tracing.
 
   - type: textarea
     id: user_procedure
     attributes:
-      label: User procedure
-      description: Describe how a user, DBA, operator, or developer would use the feature.
+      label: User Procedure
 
   - type: textarea
     id: security_context
     attributes:
-      label: Security context
-      description: Describe privilege checks, authentication, authorization, data exposure, or security-sensitive behavior.
+      label: Security Considerations
 
   - type: textarea
     id: compatibility_behavior_change
     attributes:
-      label: Compatibility and behavior change
-      description: Describe compatibility, upgrade, downgrade, replication, cross-version, deprecation, or behavior-change concerns.
+      label: Compatibility and Behavior Changes
 
   - type: markdown
     attributes:
       value: |
-        ## 5. Low-Level Design
-
-        Optional. Use this section when implementation detail is needed for review or handoff.
+        ## 5. Low-Level Design (Optional)
 
   - type: textarea
     id: block_diagram
     attributes:
-      label: Block diagram
-      description: Add a diagram, ASCII sketch, Mermaid diagram, or link if helpful.
-      placeholder: |
-        ```mermaid
-        flowchart TD
-          A --> B
-        ```
+      label: Block Diagram
+      description: Include a Mermaid diagram, ASCII diagram, or link if helpful.
 
   - type: textarea
     id: interface_specification
     attributes:
-      label: Interface specification
-      description: Describe internal APIs, public APIs, protocol changes, data structures, file formats, or integration points.
+      label: Interface Specification
 
   - type: textarea
     id: implementation_steps
     attributes:
-      label: Design / implementation steps
-      description: Outline the expected implementation plan or major work items.
+      label: Proposed Implementation Plan
       placeholder: |
         1.
         2.
@@ -336,17 +308,10 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 6. QA Notes
-
-        Optional. Capture edge cases and validation considerations without overly constraining independent QA exploration.
+        ## 6. QA Notes (Optional)
 
   - type: textarea
     id: qa_notes
     attributes:
-      label: QA notes
-      description: Describe edge cases, test scenarios, regression risks, automation candidates, compatibility tests, or validation concerns.
-      placeholder: |
-        - Edge cases:
-        - Regression risks:
-        - Suggested test coverage:
-        - Automation candidates:
+      label: QA Notes
+      description: Edge cases, testing strategy, regression risks, automation opportunities, etc.
