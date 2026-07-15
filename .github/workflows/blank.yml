@@ -1,0 +1,116 @@
+name: Create Discussion From Labeled Issue
+
+on:
+  issues:
+    types:
+      - labeled
+
+permissions:
+  contents: read
+  issues: write
+  discussions: write
+
+jobs:
+  create-discussion:
+    if: contains(
+          fromJson('["AI & Cloud","Performance & Obesrvability","Extensibility/Ecosystem","Developer / DBA Experience"]'),
+          github.event.label.name
+        )
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Discussion
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labelName = context.payload.label.name;
+            const issue = context.payload.issue;
+
+            // Get repository and discussion categories
+            const { repository } = await github.graphql(`
+              query($owner: String!, $repo: String!) {
+                repository(owner: $owner, name: $repo) {
+                  id
+                  discussionCategories(first: 100) {
+                    nodes {
+                      id
+                      name
+                    }
+                  }
+                }
+              }
+            `, {
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            // Find category matching the label name
+            const category = repository.discussionCategories.nodes.find(
+              c => c.name === labelName
+            );
+
+            if (!category) {
+              core.setFailed(
+                `No discussion category named "${labelName}" exists.`
+              );
+              return;
+            }
+
+            const body = `
+            ## Original Issue
+
+            **Issue:** #${issue.number}
+
+            **Author:** @${issue.user.login}
+
+            **Category:** ${labelName}
+
+            **Issue Link:** ${issue.html_url}
+
+            ---
+
+            ${issue.body || '_No issue description provided._'}
+            `;
+
+            // Create the discussion
+            const result = await github.graphql(`
+              mutation(
+                $repositoryId: ID!,
+                $categoryId: ID!,
+                $title: String!,
+                $body: String!
+              ) {
+                createDiscussion(
+                  input: {
+                    repositoryId: $repositoryId
+                    categoryId: $categoryId
+                    title: $title
+                    body: $body
+                  }
+                ) {
+                  discussion {
+                    url
+                  }
+                }
+              }
+            `, {
+              repositoryId: repository.id,
+              categoryId: category.id,
+              title: issue.title,
+              body: body
+            });
+
+            const discussionUrl =
+              result.createDiscussion.discussion.url;
+
+            // Add a comment back to the issue with the discussion link
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `A discussion has been created for this topic:\n\n${discussionUrl}`
+            });
+
+            core.info(`Discussion created: ${discussionUrl}`);
