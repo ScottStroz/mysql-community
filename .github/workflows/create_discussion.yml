@@ -81,13 +81,13 @@ jobs:
             // Replace any leading [Something] tags with [Discussion]
             const title = issue.title.replace(/^(\[[^\]]+\]\s*)+/, "[Discussion] ");
 
-            const body = `
-This discussion was automatically created from **Issue #${issue.number}**.
-
-**Original Issue:** ${issue.html_url}
-
-Please use this discussion for community feedback and conversation. The issue remains the authoritative tracking item.
-`;
+            const body = [
+              `This discussion was automatically created from **Issue #${issue.number}**.`,
+              ``,
+              `**Original Issue:** ${issue.html_url}`,
+              ``,
+              `Please use this discussion for community feedback and conversation. The issue remains the authoritative tracking item.`,
+            ].join("\n");
 
             // Create the discussion
             const result = await github.graphql(`
