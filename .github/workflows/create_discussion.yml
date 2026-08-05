@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   create-discussion:
-    if: contains(
-          fromJson('["AI & Cloud","Performance & Observability","Extensibility/Ecosystem","Developer / DBA Experience"]'),
-          github.event.label.name
-        )
+    if: >
+      github.event_name == 'issues' &&
+      github.event.action == 'labeled' &&
+      contains(fromJson('["AI & Cloud","Performance & Observability","Extensibility/Ecosystem","Developer / DBA Experience"]'), github.event.label.name)
 
     runs-on: ubuntu-latest
 
@@ -25,8 +25,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const labelName = context.payload.label.name;
+            const labelName = context.payload.label?.name;
             const issue = context.payload.issue;
+
+            if (!labelName) {
+              core.setFailed(`No label found in event payload for event: ${context.eventName}`);
+              return;
+            }
 
             // Skip if we've already created a discussion for this issue
             const comments = await github.paginate(github.rest.issues.listComments, {
@@ -114,7 +119,6 @@ Please use this discussion for community feedback and conversation. The issue re
 
             const discussionUrl = result.createDiscussion.discussion.url;
 
-            // Comment on the issue with a link to the discussion
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
