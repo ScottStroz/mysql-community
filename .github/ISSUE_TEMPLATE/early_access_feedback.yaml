@@ -20,7 +20,7 @@ body:
     attributes:
       label: Early Access release
       description: Which Early Access release or build are you using?
-      placeholder: "For example: MySQL 9.x.x Early Access"
+      placeholder: "For example: MySQL 26.x.x Early Access"
     validations:
       required: true
 
