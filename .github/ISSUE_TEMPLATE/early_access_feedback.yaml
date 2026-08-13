@@ -1,0 +1,142 @@
+```yaml
+name: Early Access Feedback
+description: Share feedback about a MySQL Early Access release.
+title: "[Early Access] "
+labels:
+  - early-access
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for trying a MySQL Early Access release!
+
+        Use this form to share feedback about your experience. Feedback does
+        not need to be a bug. We welcome observations about behavior,
+        usability, compatibility, documentation, performance, or anything
+        else that could help improve the product.
+
+  - type: input
+    id: release
+    attributes:
+      label: Early Access release
+      description: Which Early Access release or build are you using?
+      placeholder: "For example: MySQL 9.x.x Early Access"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: product
+    attributes:
+      label: Product category
+      description: Select the product or area most closely related to your feedback.
+      options:
+        - Server
+        - InnoDB
+        - Optimizer
+        - Parser / SQL syntax
+        - Replication
+        - Group Replication / InnoDB Cluster
+        - Clone / Backup
+        - Authentication / Security
+        - C API / libmysqlclient
+        - Connector/C++
+        - Connector/J
+        - Connector/NET
+        - Connector/Node.js
+        - Connector/Python
+        - MySQL Shell
+        - MySQL Router
+        - MySQL Operator
+        - MySQL Workbench
+        - Documentation
+        - Build / Packaging
+        - Tests / CI
+        - Other / Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feedback-type
+    attributes:
+      label: Type of feedback
+      description: How would you best describe your feedback?
+      options:
+        - General feedback / observation
+        - Unexpected behavior
+        - Usability / developer experience
+        - Performance
+        - Compatibility
+        - Documentation
+        - Feature suggestion
+        - Possible bug
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Feedback
+      description: |
+        Tell us what you observed and why it is important to you.
+        Include enough context for us to understand your experience.
+      placeholder: |
+        I was trying to...
+        
+        I noticed...
+        
+        This matters because...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      description: |
+        If applicable, tell us what you expected to happen or how you
+        expected the feature to work.
+      placeholder: Describe what you expected or what would have provided a better experience.
+    validations:
+      required: false
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps or example
+      description: |
+        If applicable, provide steps, SQL, configuration, code, or another
+        example that helps us understand or reproduce what you experienced.
+      placeholder: |
+        1. Configure...
+        2. Run...
+        3. Observe...
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: |
+        Provide any relevant environment details, such as operating system,
+        deployment method, topology, client/connector version, or configuration.
+      placeholder: |
+        OS:
+        Deployment:
+        Configuration/topology:
+        Other relevant details:
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional information
+      description: |
+        Add logs, screenshots, links, or anything else that may help us
+        understand your feedback.
+    validations:
+      required: false
+```
